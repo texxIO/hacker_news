@@ -13,8 +13,6 @@ $app = new Silex\Application();
 $app['debug'] = true;
 $app->register(new Silex\Provider\RoutingServiceProvider());
 $app['routes'] = $routes;
-var_dump($routes);
-
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/../views', // The path to the views, which is in our case points to /var/www/views
