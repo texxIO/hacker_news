@@ -6,7 +6,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class HomeController
 {
-    public function indexAction( Application $app , Request $request)
+    /**
+     * @param Application $app
+     * @param Request $request
+     * @return Response
+     */
+    public function newAction( Application $app , Request $request)
     {
         $data['newsList'] = [
             ['title'=>'news 1','body'=>'text body content 1'],
@@ -18,9 +23,57 @@ class HomeController
 
     }
 
+    /**
+     * @param Application $app
+     * @param Request $request
+     * @return Response
+     */
+    public function commentsAction( Application $app , Request $request )
+    {
+        return new Response('Comments section');
+    }
 
+    /**
+     * @param Application $app
+     * @param Request $request
+     * @return Response
+     */
+    public function showAction( Application $app , Request $request )
+    {
+        return new Response('Show section');
+    }
+
+    /**
+     * @param Application $app
+     * @param Request $request
+     * @return Response
+     */
     public function askAction( Application $app , Request $request )
     {
-        return new Response('aaask');
+        return new Response('Ask section');
     }
+
+    /**
+     * @param Application $app
+     * @param Request $request
+     * @return Response
+     */
+    public function jobsAction( Application $app , Request $request )
+    {
+        return new Response('Jobs sections');
+    }
+
+    /**
+     * @param Application $app
+     * @param Request $request
+     * @return Response
+     */
+    public function submitAction( Application $app , Request $request )
+    {
+        return new Response('Nothing here. Just ignored.');
+    }
+
+
+
+
 }
