@@ -4,7 +4,9 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "adb170a59e74b7b276ec0e0f69cf91c1",
+
+    "hash": "a11ad5226fdeb87f9b7b00c1b2d64e9a",
+    "content-hash": "cc795814c45638a73beceb34fa7fe345",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -69,7 +71,11 @@
                 "rest",
                 "web service"
             ],
+<<<<<<< HEAD
             "time": "2018-04-22T15:46:56+00:00"
+=======
+            "time": "2018-04-22 15:46:56"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "guzzlehttp/promises",
@@ -120,7 +126,11 @@
             "keywords": [
                 "promise"
             ],
+<<<<<<< HEAD
             "time": "2016-12-20T10:07:11+00:00"
+=======
+            "time": "2016-12-20 10:07:11"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "guzzlehttp/psr7",
@@ -185,7 +195,11 @@
                 "uri",
                 "url"
             ],
+<<<<<<< HEAD
             "time": "2017-03-20T17:10:46+00:00"
+=======
+            "time": "2017-03-20 17:10:46"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "pimple/pimple",
@@ -335,6 +349,56 @@
                 "response"
             ],
             "time": "2016-08-06T14:39:51+00:00"
+        },
+        {
+            "name": "psr/http-message",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/http-message.git",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/http-message/zipball/f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "reference": "f6561bf28d520154e4b0ec72be95418abe6d9363",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for HTTP messages",
+            "homepage": "https://github.com/php-fig/http-message",
+            "keywords": [
+                "http",
+                "http-message",
+                "psr",
+                "psr-7",
+                "request",
+                "response"
+            ],
+            "time": "2016-08-06 14:39:51"
         },
         {
             "name": "psr/log",
@@ -579,7 +643,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2018-04-30T16:59:37+00:00"
+=======
+            "time": "2018-04-30 16:59:37"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "symfony/event-dispatcher",
@@ -695,7 +763,11 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2018-04-30T01:05:59+00:00"
+=======
+            "time": "2018-04-30 01:05:59"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "symfony/http-kernel",
@@ -781,7 +853,11 @@
             ],
             "description": "Symfony HttpKernel Component",
             "homepage": "https://symfony.com",
+<<<<<<< HEAD
             "time": "2018-04-30T19:45:57+00:00"
+=======
+            "time": "2018-04-30 19:45:57"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -840,7 +916,11 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< HEAD
             "time": "2018-04-26T10:06:28+00:00"
+=======
+            "time": "2018-04-26 10:06:28"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "symfony/routing",
@@ -918,6 +998,7 @@
                 "uri",
                 "url"
             ],
+<<<<<<< HEAD
             "time": "2018-04-20T06:20:23+00:00"
         },
         {
@@ -1009,6 +1090,9 @@
             "description": "Symfony Twig Bridge",
             "homepage": "https://symfony.com",
             "time": "2018-04-30T16:59:37+00:00"
+=======
+            "time": "2018-04-20 06:20:23"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "twig/twig",
@@ -1131,7 +1215,11 @@
                 "portable",
                 "shim"
             ],
+<<<<<<< HEAD
             "time": "2018-04-26T10:06:28+00:00"
+=======
+            "time": "2018-04-26 10:06:28"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         },
         {
             "name": "symfony/var-dumper",
@@ -1200,7 +1288,11 @@
                 "debug",
                 "dump"
             ],
+<<<<<<< HEAD
             "time": "2018-04-26T16:12:06+00:00"
+=======
+            "time": "2018-04-26 16:12:06"
+>>>>>>> 798a942d7f89259e229d0e63cdac121b629b5d41
         }
     ],
     "aliases": [],
