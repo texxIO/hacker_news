@@ -3,13 +3,14 @@ namespace HackerNews\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+use HackerNews\Helpers\HackerNewsApi as Api;
 class HomeController
 {
     /**
      * @param Application $app
      * @param Request $request
      * @return Response
+     * @throws \Exception
      */
     public function newAction( Application $app , Request $request)
     {
@@ -18,6 +19,22 @@ class HomeController
             ['title'=>'news 2','body'=>'text body content 2'],
             ['title'=>'news 3','body'=>'text body content 3'],
         ];
+
+        try {
+            $api = new Api();
+            $api->setUrl($app['config']['api_url']);
+            $api->setType($app['config']['api_requests']['newstories']);
+            $data['stories'] = json_decode($api->get());
+        }catch( \Exception $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+        catch ( \Error $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
 
         return new Response( $app['twig']->render('index.html.twig', $data) );
 
