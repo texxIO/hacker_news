@@ -5,6 +5,12 @@ namespace HackerNews\Provider;
 use Silex\Api\ControllerProviderInterface;
 use Silex\Application;
 
+/**
+ * DEPRECATED ! - RouteCollection in use.
+ * TODO - should be removed
+ * Class GlobalControllerProvider
+ * @package HackerNews\Provider
+ */
 class GlobalControllerProvider implements ControllerProviderInterface
 {
 
