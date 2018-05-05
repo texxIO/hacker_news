@@ -8,11 +8,10 @@ if (php_sapi_name() === 'cli-server' && is_file($filename)) {
     return false;
 }
 
-//var_dump($routes);
-
 $app = new Silex\Application();
 $app['debug'] = true;
 $app->register(new Silex\Provider\RoutingServiceProvider());
+
 $app['routes'] = $routes;
 $app['config'] = $config;
 
