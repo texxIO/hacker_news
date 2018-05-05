@@ -15,6 +15,11 @@ $app->register(new Silex\Provider\RoutingServiceProvider());
 $app['routes'] = $routes;
 $app['config'] = $config;
 
+$api = new HackerNews\Helpers\HackerNewsApi();
+$api->setUrl($app['config']['api_url']);
+
+$app['hnApi'] = $api;
+
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/../views', // The path to the views, which is in our case points to /var/www/views
 ));

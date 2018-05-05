@@ -12,6 +12,34 @@ class HomeController
      * @return Response
      * @throws \Exception
      */
+
+    public function newsAction( Application $app , Request $request)
+    {
+        $data['newsList'] = [
+            ['title'=>'news 1','body'=>'text body content 1'],
+            ['title'=>'news 2','body'=>'text body content 2'],
+            ['title'=>'news 3','body'=>'text body content 3'],``
+        ];
+
+        try {
+
+            $app['hnApi']->setType($app['config']['api_requests']['newstories']);
+            $data['stories'] = $app['hnApi']->get();
+        }catch( \Exception $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+        catch ( \Error $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+
+        return new Response( $app['twig']->render('index.html.twig', $data) );
+
+    }
+
     public function newAction( Application $app , Request $request)
     {
         $data['newsList'] = [
@@ -21,10 +49,9 @@ class HomeController
         ];
 
         try {
-            $api = new Api();
-            $api->setUrl($app['config']['api_url']);
-            $api->setType($app['config']['api_requests']['newstories']);
-            $data['stories'] = json_decode($api->get());
+
+            $app['hnApi']->setType($app['config']['api_requests']['newstories']);
+            $data['stories'] = json_decode($app['hnApi']->get());
         }catch( \Exception $e )
         {
             //DEBUG ONLY -  check the error log for the message
@@ -88,6 +115,11 @@ class HomeController
     public function submitAction( Application $app , Request $request )
     {
         return new Response('Nothing here. Just ignored.');
+    }
+
+    public function itemAction( int $id,  Application $app, Request $request )
+    {
+        return new Response('Display item');
     }
 
 

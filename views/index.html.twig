@@ -1,12 +1,12 @@
 {% extends 'layout.html.twig' %}
 {% block content %}
 <div class="row">
-    {% for news in newsList %}
+    {% for story in stories %}
         <div class="col-md-12">
-            <h3>{{ news.title }}</h3>
+            <h3>{{ story.title }}</h3>
                 <p>{{ news.body }}</p>
 
         </div>
-{% endfor %}
+    {% endfor %}
 </div>
 {% endblock %}

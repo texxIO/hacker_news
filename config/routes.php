@@ -4,6 +4,10 @@ use Symfony\Component\Routing\Route;
 
 $routes = new RouteCollection();
 $routes->add('/', new Route('/', array(
+    '_controller' => 'HackerNews\Controller\HomeController::newsAction',
+)));
+
+$routes->add('/new', new Route('/', array(
     '_controller' => 'HackerNews\Controller\HomeController::newAction',
 )));
 
@@ -30,6 +34,10 @@ $routes->add('/jobs', new Route('/jobs', array(
 $routes->add('/submit', new Route('/submit', array(
     '_controller' => 'HackerNews\Controller\HomeController::submitAction',
 
+)));
+
+$routes->add('/item', new Route('/item/{id}', array(
+    '_controller' => 'HackerNews\Controller\HomeController::itemAction',
 )));
 
 return $routes;

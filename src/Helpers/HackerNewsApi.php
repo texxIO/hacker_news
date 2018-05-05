@@ -2,10 +2,12 @@
     namespace HackerNews\Helpers;
     use GuzzleHttp;
     use GuzzleHttp\Exception\ClientException;
+    use HackerNews\Helpers\ApiHelperTraits;
 
 
     class HackerNewsApi
     {
+        use ApiHelperTraits;
         protected $client;
         protected $url;
         protected $type;
@@ -44,13 +46,13 @@
                 // "200"
                 echo $res->getHeader('content-type');
                 // 'application/json; charset=utf8'
-                $result =  $res->getBody();
+                $result =  json_decode($res->getBody());
             }catch( ClientException $e )
             {
                 //read the log
                 //echo $e->getMessage();
                 echo 'Invalid api request';
-                $result = json_encode([]);
+                $result = [];
             }
 
             return $result;
