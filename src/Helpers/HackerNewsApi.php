@@ -143,7 +143,7 @@
 
                 $counter++;
 
-                if ($counter == $limit) {
+                if ($counter > $limit) {
                     break;
                 }
 
@@ -197,7 +197,7 @@
          */
         private function getElapsedTime(string $timestamp)
         {
-            $elapsed = null;
+            $elapsed = '0 minutes';
             if (strlen($timestamp) == 0) {
                 return $elapsed;
             }

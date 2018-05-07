@@ -3,23 +3,26 @@
 <div class="row">
     {% for story in stories %}
         <div class="col-md-12" data-id="{{ story.id }}">
-            <p>
-                <a href="{{ story.url }}" target="_blank">
-                    <strong>{{ story.title }}</strong>
-                </a>
+            <div class="row">
+                <div class="col-md-1 text-center">
+                    {{ loop.index }}
+                </div>
+                <div class="col-md-11">
+                    <a href="{{ story.url }}" target="_blank" class="title">
+                        <strong>{{ story.title }}</strong>
+                    </a>
 
-                {% if (story.urlDisplay is defined) %}
-                <span class="small">(<a href="/from/{{ story.urlDisplay }}/web" target="_blank">{{ story.urlDisplay }}</a>)</span>
-                {% endif %}
-            </p>
-            <p class="small">
+                    {% if (story.urlDisplay is defined) %}
+                    <span class="small">(<a href="/from/{{ story.urlDisplay }}/web" target="_blank">{{ story.urlDisplay }}</a>)</span>
+                    {% endif %}
+                    <p class="small">
+                        {% if story.timeElapsed is defined %}
+                            {{ story.timeElapsed }} ago
+                        {% endif %}
+                    </p>
+                </div>
 
-                {% if story.timeElapsed is defined %}
-                    {{ story.timeElapsed }} ago
-                {% endif %}
-
-            </p>
-
+            </div>
         </div>
     {% endfor %}
 </div>

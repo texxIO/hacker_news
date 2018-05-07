@@ -5,7 +5,7 @@
 
         <div class="col-md-12" data-id="{{ item.id }}">
             <p>
-                <a href="{{ item.url }}" target="_blank">
+                <a href="{{ item.url }}" target="_blank" class="title">
                     <strong>{{ item.title }}</strong>
                 </a>
 
@@ -13,6 +13,7 @@
                 <span class="small">(<a href="/from/{{ item.urlDisplay }}" target="_blank">{{ item.urlDisplay }}</a>)</span>
                 {% endif %}
             </p>
+
             <p class="small">
                 {{ item.score }} points
                 by <a href="/user/{{ item.by }}">{{ item.by }}</a>
@@ -27,16 +28,36 @@
                 {% if item.descendants is defined %}
                 | {{ item.descendants }} comments
                 {% endif %}
+            </p>
 
-                {% if item.comments is defined %}
+            {% if item.text is defined %}
+                <p>
+                    {{ item.text | raw }}
+                </p>
+            {% endif %}
+
+            
+            <form>
+                <div class="form-group">
+                    <label for="addComment">Add comment</label>
+                    <textarea class="form-control" id="addComment" rows="3"></textarea>
+
+                </div>
+                <div class="form-group">
+                    <button type="button" class="btn btn-secondary">Add comment</button>
+                </div>
+            </form>
+
+
+            {% if item.comments is defined %}
 
 
             {% macro recursiveComments(itemx) %}
                 {% import _self as self %}
+                {% if itemx.type == "comment" %}
+                    <li>
+                        {% if itemx.deleted is not defined %}
 
-                <li>
-                    {% if itemx.deleted is not defined %}
-                        {% if itemx.type == "comment" %}
                             <a href="/item/{{ itemx.by }}">
                                 <strong>{{ itemx.by }}</strong>
                             </a> |
@@ -57,21 +78,32 @@
                                 </ul>
                             {% endif %}
                         {% endif %}
-                    {% endif %}
 
-                </li>
+
+                    </li>
+                    {% else %}
+                        {% if itemx.comments is defined %}
+                            {% if itemx.comments|length %}
+                                    {% for child in itemx.comments %}
+                                        {{ self.recursiveComments(child) }}
+                                    {% endfor %}
+                            {% endif %}
+                    {% endif %}
+                {% endif %}
+
+
             {% endmacro %}
 
             {% from _self import recursiveComments %}
 
-            <div id="comments" class="col">
+            <div id="comments" >
                 <ul>
                         {{ recursiveComments(item) }}
                 </ul>
             </div>
 
                 {% endif %}
-            </p>
+
 
         </div>
 

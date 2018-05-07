@@ -2,35 +2,39 @@
 {% block content %}
 <div class="row">
     {% for story in stories %}
-        <div class="col-md-12" data-id="{{ story.id }}">
-            <p>
-                <a href="{{ story.url }}" target="_blank">
-                    <strong>{{ story.title }}</strong>
-                </a>
+        <div class="col-md-12 " data-id="{{ story.id }}">
+            <div class="row">
+                <div class="col-md-1 text-center">
+                    {{ loop.index }}
+                </div>
+                <div class="col-md-11">
+                    <a href="{{ story.url }}" target="_blank" class="title">
+                        <strong>{{ story.title }}</strong>
+                    </a>
 
-                {% if (story.urlDisplay is defined) %}
-                <span class="small">(<a href="/from/{{ story.urlDisplay }}/web" target="_blank">{{ story.urlDisplay }}</a>)</span>
-                {% endif %}
-            </p>
-            <p class="small">
-                {{ story.score }} points
-                by <a href="/user/{{ story.by }}">{{ story.by }}</a>
-                {% if story.timeElapsed is defined %}
-                {{ story.timeElapsed }} ago | <a href="#" class="hide_item">hide</a>
-                {% endif %}
-
-                {% if story.descendants is defined %}
-                    |
-                    {% if story.descendants > 0 %}
-                        <a href="/item/{{ story.id }}">{{ story.descendants }} comments</a>
-                    {% else %}
-                        <a href="/item/{{ story.id }}">discuss</a>
+                    {% if (story.urlDisplay is defined) %}
+                    <span class="small">(<a href="/from/{{ story.urlDisplay }}/web" target="_blank">{{ story.urlDisplay }}</a>)</span>
                     {% endif %}
+                    <p class="small">
+                        {{ story.score }} points
+                        by <a href="/user/{{ story.by }}">{{ story.by }}</a>
+                        {% if story.timeElapsed is defined %}
+                            <a href="/item/{{ story.id }}">{{ story.timeElapsed }} ago</a>
+                        {% endif %}
+                        | <a href="#" class="hide_item">hide</a>
+                        {% if story.descendants is defined %}
+                            |
+                            {% if story.descendants > 0 %}
+                                <a href="/item/{{ story.id }}">{{ story.descendants }} comments</a>
+                            {% else %}
+                                <a href="/item/{{ story.id }}">discuss</a>
+                            {% endif %}
 
-                {% endif %}
+                        {% endif %}
 
-            </p>
-
+                    </p>
+                </div>
+            </div>
         </div>
     {% endfor %}
 </div>

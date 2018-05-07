@@ -1,1 +1,5 @@
 /*Custom css*/
+
+a.title, a.title:hover, a.title:active, a.title:visited { color:#000; text-decoration:none; }
+.small > a, a:hover, a:visited, a:active { color:#000; }
+.counter { width:100px !important; }

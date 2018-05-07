@@ -172,7 +172,6 @@ class HomeController
             echo $e->getMessage();
         }
 
-
         return new Response( $app['twig']->render('item.html.twig', $data) );
     }
 
