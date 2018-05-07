@@ -1,0 +1,48 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<div class="row">
+    {% if user %}
+
+        <div class="col-md-12" data-id="{{ user.id }}">
+            <table class="table table-borderless">
+                <tr>
+                    <td>user</td>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <td>created</td>
+                    <td>{{ user.created }}</td>
+                </tr>
+                <tr>
+                    <td>karma</td>
+                    <td>{{ user.karma }}</td>
+                </tr>
+
+                <tr>
+                    <td>about</td>
+                    <td>
+                        {% if user.about is defined %}
+                            {{ user.about|raw }}
+                        {% endif %}
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td></td>
+                    <td>
+                        <ul class="list-unstyled">
+                            <li><a href="#">submissions</a></li>
+                            <li><a href="#">comments</a></li>
+                            <li><a href="#">favorites</a></li>
+                        </ul>
+
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+
+    {% endif %}
+</div>
+{% endblock %}

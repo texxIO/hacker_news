@@ -15,7 +15,15 @@ $app->register(new Silex\Provider\RoutingServiceProvider());
 $app['routes'] = $routes;
 $app['config'] = $config;
 
-$api = new HackerNews\Helpers\HackerNewsApi();
+//TODO - if we have time...
+$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+    'db.options' => array(
+        'driver'   => 'pdo_sqlite',
+        'path'     => $app['config']['db']['sqlite']['path'],
+    ),
+));
+
+$api = new HackerNews\Helpers\HackerNewsApi($config['api_requests']);
 $api->setUrl($app['config']['api_url']);
 
 $app['hnApi'] = $api;
@@ -23,6 +31,7 @@ $app['hnApi'] = $api;
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__ . '/../views', // The path to the views, which is in our case points to /var/www/views
 ));
+
 
 $app->run();
 

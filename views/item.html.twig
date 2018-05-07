@@ -1,0 +1,87 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<div class="row">
+    {% if item is defined %}
+
+        <div class="col-md-12" data-id="{{ item.id }}">
+            <p>
+                <a href="{{ item.url }}" target="_blank">
+                    <strong>{{ item.title }}</strong>
+                </a>
+
+                {% if item.urlDisplay is defined %}
+                <span class="small">(<a href="/from/{{ item.urlDisplay }}" target="_blank">{{ item.urlDisplay }}</a>)</span>
+                {% endif %}
+            </p>
+            <p class="small">
+                {{ item.score }} points
+                by <a href="/user/{{ item.by }}">{{ item.by }}</a>
+                {% if item.timeElapsed is defined %}
+                    {{ item.timeElapsed }} ago
+                {% endif %}
+                | <a href="#" class="hide_item">hide</a>
+                | <a href="#">past</a>
+
+                | <a href="/from/{{ item.title }}/google" target="_blank">web</a>
+
+                {% if item.descendants is defined %}
+                | {{ item.descendants }} comments
+                {% endif %}
+
+                {% if item.comments is defined %}
+                <ul>
+                    {% for comment in item.comments%}
+                        {% if comment.deleted is not defined %}
+                            <li>
+                                <strong>{{ comment.by }}</strong> | {{ comment.timeElapsed }} ago
+                                <p>{{ comment.text | raw }}</p>
+                            </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+                {#
+                {% import _self as macro %}
+
+                {{ macro.menu(item) }}
+
+                {% macro multilevel(array) %}
+                {% import _self as macro %}
+            <ul>
+                {% for item in array %}
+                    <li>
+                        {% if item is iterable %}
+                            {{ macro.multilevel(item) }}
+                        {% else %}
+                            {{ item }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endmacro %}
+
+
+                {% macro menu(item) %}
+                    {% import _self as macro %}
+                    <ul>
+                        {% for link in item %}
+                            <li>
+                                {% if not link['comments']|default([]) is empty %}
+                                {{ link.by }}
+                                {{ link['text'] }}
+
+                                    {{ macro.menu(link['comments']) }}
+
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endmacro %}
+            #}
+                {% endif %}
+            </p>
+
+        </div>
+
+    {% endif %}
+</div>
+{% endblock %}

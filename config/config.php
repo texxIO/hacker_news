@@ -10,6 +10,12 @@
                                 'askstories' => '/askstories',
                                 'showstories' => '/showstories',
                                 'jobstories' => '/jobstories',
-                                'updates' => '/updates'
-                                ]
+                                'updates' => '/updates',
+                                'newcomments' => '/newcomments',
+                                ],
+                    'db' => [
+                        'sqlite' => [
+                            'path' => '../database/hacker-news.db'
+                        ]
+                    ]
    ];

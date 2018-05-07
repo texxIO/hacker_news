@@ -3,7 +3,10 @@
         "silex/silex": "^2.0",
         "twig/twig":"^2.4",
         "php":"~7.2",
-        "guzzlehttp/guzzle": "~6.0"
+        "guzzlehttp/guzzle": "~6.0",
+        "symfony/twig-bridge": "^4.0",
+        "symfony/asset": "^4.0",
+        "doctrine/dbal": "~2.2"
 
     },
     "require-dev": {

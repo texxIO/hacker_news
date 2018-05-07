@@ -3,7 +3,7 @@ namespace HackerNews\Controller;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use HackerNews\Helpers\HackerNewsApi as Api;
+
 class HomeController
 {
     /**
@@ -15,16 +15,11 @@ class HomeController
 
     public function newsAction( Application $app , Request $request)
     {
-        $data['newsList'] = [
-            ['title'=>'news 1','body'=>'text body content 1'],
-            ['title'=>'news 2','body'=>'text body content 2'],
-            ['title'=>'news 3','body'=>'text body content 3'],``
-        ];
 
         try {
 
-            $app['hnApi']->setType($app['config']['api_requests']['newstories']);
-            $data['stories'] = $app['hnApi']->get();
+            $app['hnApi']->setType($app['config']['api_requests']['topstories']);
+            $data['stories'] = $app['hnApi']->get()->getAllItems();
         }catch( \Exception $e )
         {
             //DEBUG ONLY -  check the error log for the message
@@ -42,16 +37,10 @@ class HomeController
 
     public function newAction( Application $app , Request $request)
     {
-        $data['newsList'] = [
-            ['title'=>'news 1','body'=>'text body content 1'],
-            ['title'=>'news 2','body'=>'text body content 2'],
-            ['title'=>'news 3','body'=>'text body content 3'],
-        ];
-
         try {
 
             $app['hnApi']->setType($app['config']['api_requests']['newstories']);
-            $data['stories'] = json_decode($app['hnApi']->get());
+            $data['stories'] = $app['hnApi']->get()->getAllItems();
         }catch( \Exception $e )
         {
             //DEBUG ONLY -  check the error log for the message
@@ -74,7 +63,8 @@ class HomeController
      */
     public function commentsAction( Application $app , Request $request )
     {
-        return new Response('Comments section');
+        $data['message'] = 'No API method available for this request';
+        return new Response( $app['twig']->render('nothinghere.html.twig', $data) );
     }
 
     /**
@@ -84,7 +74,23 @@ class HomeController
      */
     public function showAction( Application $app , Request $request )
     {
-        return new Response('Show section');
+         try {
+
+             $app['hnApi']->setType($app['config']['api_requests']['showstories']);
+             $data['stories'] = $app['hnApi']->get()->getAllItems();
+         }catch( \Exception $e )
+         {
+             //DEBUG ONLY -  check the error log for the message
+             echo $e->getMessage();
+         }
+         catch ( \Error $e )
+         {
+             //DEBUG ONLY -  check the error log for the message
+             echo $e->getMessage();
+         }
+
+        return new Response( $app['twig']->render('index.html.twig', $data) );
+
     }
 
     /**
@@ -94,7 +100,22 @@ class HomeController
      */
     public function askAction( Application $app , Request $request )
     {
-        return new Response('Ask section');
+        try {
+
+            $app['hnApi']->setType($app['config']['api_requests']['askstories']);
+            $data['stories'] = $app['hnApi']->get()->getAllItems();
+        }catch( \Exception $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+        catch ( \Error $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+
+        return new Response( $app['twig']->render('index.html.twig', $data) );
     }
 
     /**
@@ -114,14 +135,70 @@ class HomeController
      */
     public function submitAction( Application $app , Request $request )
     {
-        return new Response('Nothing here. Just ignored.');
+        $data['message'] = 'This is out of scope.';
+        return new Response( $app['twig']->render('nothinghere.html.twig', $data) );
     }
 
     public function itemAction( int $id,  Application $app, Request $request )
     {
-        return new Response('Display item');
+        try {
+
+            $app['hnApi']->setType($app['config']['api_requests']['item']);
+            $data['item'] = $app['hnApi']->get($id)->getItemDetails();
+        }catch( \Exception $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+        catch ( \Error $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+
+
+        return new Response( $app['twig']->render('item.html.twig', $data) );
     }
 
+    /**
+     * @param string $url
+     * @param int $type
+     * @param Application $app
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function fromAction( string $url , string $type = 'web', Application $app)
+    {
+        if ( $type == 'web' ) {
+            $url = urlencode($url);
+            return $app->redirect('http://' . $url, 301);
+        }
+        elseif ( $type == 'google' )
+        {
+            $url = urlencode($url);
+            return $app->redirect('https://www.google.com/search?q=' . $url, 301);
+        }
+    }
+
+    public function userAction( string $id,  Application $app, Request $request )
+    {
+        try {
+
+            $app['hnApi']->setType($app['config']['api_requests']['user']);
+            $data['user'] = $app['hnApi']->get($id)->getUserDetails();
+
+        }catch( \Exception $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+        catch ( \Error $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+
+        return new Response( $app['twig']->render('user.html.twig', $data) );
+    }
 
 
 

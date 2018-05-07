@@ -7,7 +7,7 @@ $routes->add('/', new Route('/', array(
     '_controller' => 'HackerNews\Controller\HomeController::newsAction',
 )));
 
-$routes->add('/new', new Route('/', array(
+$routes->add('/new', new Route('/newest', array(
     '_controller' => 'HackerNews\Controller\HomeController::newAction',
 )));
 
@@ -38,6 +38,14 @@ $routes->add('/submit', new Route('/submit', array(
 
 $routes->add('/item', new Route('/item/{id}', array(
     '_controller' => 'HackerNews\Controller\HomeController::itemAction',
+)));
+
+$routes->add('/from', new Route('/from/{url}/{type}', array(
+    '_controller' => 'HackerNews\Controller\HomeController::fromAction',
+)));
+
+$routes->add('/user', new Route('/user/{id}', array(
+    '_controller' => 'HackerNews\Controller\HomeController::userAction',
 )));
 
 return $routes;
