@@ -125,7 +125,22 @@ class HomeController
      */
     public function jobsAction( Application $app , Request $request )
     {
-        return new Response('Jobs sections');
+        try {
+
+            $app['hnApi']->setType($app['config']['api_requests']['jobstories']);
+            $data['stories'] = $app['hnApi']->get()->getAllItems();
+        }catch( \Exception $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+        catch ( \Error $e )
+        {
+            //DEBUG ONLY -  check the error log for the message
+            echo $e->getMessage();
+        }
+
+        return new Response( $app['twig']->render('jobs.html.twig', $data) );
     }
 
     /**
@@ -145,6 +160,7 @@ class HomeController
 
             $app['hnApi']->setType($app['config']['api_requests']['item']);
             $data['item'] = $app['hnApi']->get($id)->getItemDetails();
+
         }catch( \Exception $e )
         {
             //DEBUG ONLY -  check the error log for the message

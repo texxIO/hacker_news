@@ -1,0 +1,26 @@
+{% extends 'layout.html.twig' %}
+{% block content %}
+<div class="row">
+    {% for story in stories %}
+        <div class="col-md-12" data-id="{{ story.id }}">
+            <p>
+                <a href="{{ story.url }}" target="_blank">
+                    <strong>{{ story.title }}</strong>
+                </a>
+
+                {% if (story.urlDisplay is defined) %}
+                <span class="small">(<a href="/from/{{ story.urlDisplay }}/web" target="_blank">{{ story.urlDisplay }}</a>)</span>
+                {% endif %}
+            </p>
+            <p class="small">
+
+                {% if story.timeElapsed is defined %}
+                    {{ story.timeElapsed }} ago
+                {% endif %}
+
+            </p>
+
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

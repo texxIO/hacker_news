@@ -29,54 +29,47 @@
                 {% endif %}
 
                 {% if item.comments is defined %}
-                <ul>
-                    {% for comment in item.comments%}
-                        {% if comment.deleted is not defined %}
-                            <li>
-                                <strong>{{ comment.by }}</strong> | {{ comment.timeElapsed }} ago
-                                <p>{{ comment.text | raw }}</p>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-                {#
-                {% import _self as macro %}
 
-                {{ macro.menu(item) }}
 
-                {% macro multilevel(array) %}
-                {% import _self as macro %}
-            <ul>
-                {% for item in array %}
-                    <li>
-                        {% if item is iterable %}
-                            {{ macro.multilevel(item) }}
-                        {% else %}
-                            {{ item }}
+            {% macro recursiveComments(itemx) %}
+                {% import _self as self %}
+
+                <li>
+                    {% if itemx.deleted is not defined %}
+                        {% if itemx.type == "comment" %}
+                            <a href="/item/{{ itemx.by }}">
+                                <strong>{{ itemx.by }}</strong>
+                            </a> |
+                            {% if itemx.timeElapsed is defined %}
+                                {{ itemx.timeElapsed }} ago
+                            {% endif %}
+
+                            {% if itemx.text is defined %}
+                                <p>{{ itemx.text | raw }}</p>
+                            {% endif %}
                         {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
+                        {% if itemx.comments is defined %}
+                            {% if itemx.comments|length %}
+                                <ul>
+                                    {% for child in itemx.comments %}
+                                        {{ self.recursiveComments(child) }}
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endif %}
+                    {% endif %}
+
+                </li>
             {% endmacro %}
 
+            {% from _self import recursiveComments %}
 
-                {% macro menu(item) %}
-                    {% import _self as macro %}
-                    <ul>
-                        {% for link in item %}
-                            <li>
-                                {% if not link['comments']|default([]) is empty %}
-                                {{ link.by }}
-                                {{ link['text'] }}
+            <div id="comments" class="col">
+                <ul>
+                        {{ recursiveComments(item) }}
+                </ul>
+            </div>
 
-                                    {{ macro.menu(link['comments']) }}
-
-                                {% endif %}
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% endmacro %}
-            #}
                 {% endif %}
             </p>
 
