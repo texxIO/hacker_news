@@ -178,9 +178,9 @@ class HomeController
 
     /**
      * @param string $url
-     * @param int $type
+     * @param string $type
      * @param Application $app
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return mixed
      */
     public function fromAction( string $url , string $type = 'web', Application $app)
     {
