@@ -12,4 +12,5 @@ install:
 matrix:
   allow_failures:
     - php: nightly
+    - php: 7.0
   fast_finish: true
