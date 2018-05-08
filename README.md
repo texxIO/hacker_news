@@ -1,20 +1,27 @@
+Hacker News Clone
+=================
 
-#Hacker News Clone
+This is a clone of the Hacker News found here: https://news.ycombinator.com/news
 
-##Hacker News API
+Hacker News API
+---------------
 https://github.com/HackerNews/API
 
-##author 
-Ionut Mihaescu
+Install
+-------
+* git clone https://github.com/texxinsane/hacker_news.git
 
-##Install
-Clone repo
+* Run composer install
 
-Run composer install
+* Setup you web server ( nginx config file can eb found in doc_resources)
 
-Setup you web server ( nginx config file can eb found in doc_resources)
+* Server public/index.php
 
-Server public/index.php 
+TODO
+----
+* Tests ( PHPUnit )
+* Configure Travis
+* Test coverage 
 
 
 
