@@ -13,7 +13,7 @@ Install
 
 * Run composer install
 
-* Setup you web server ( nginx config file can eb found in doc_resources)
+* Setup you web server ( nginx config file can be found in doc_resources)
 
 * Server public/index.php
 
