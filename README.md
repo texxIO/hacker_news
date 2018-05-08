@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.org/texxinsane/hacker_news.svg?branch=master)](https://api.travis-ci.org/texxinsane/hacker_news)
+
 Hacker News Clone
 =================
 
